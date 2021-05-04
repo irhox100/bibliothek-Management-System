@@ -1,6 +1,7 @@
 package de.bibliothek.phase4.web;
 
 import de.bibliothek.phase4.service.ArtikelService;
+import de.bibliothek.phase4.service.NutzerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,9 +12,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class NutzerController {
 
     ArtikelService artikelService;
+    NutzerService nutzerService;
 
-    public NutzerController(ArtikelService artikelService){
+    public NutzerController(ArtikelService artikelService, NutzerService nutzerService){
         this.artikelService = artikelService;
+        this.nutzerService = nutzerService;
     }
 
     @GetMapping("/")
@@ -26,7 +29,8 @@ public class NutzerController {
     }
 
     @GetMapping("/registerBib")
-    public String getBibliothekarForm(){
+    public String getBibliothekarForm(Model model){
+        model.addAttribute("bibliothekar", new BibliothekarFormData());
         return "BibliothekarForm";
     }
 
@@ -36,8 +40,10 @@ public class NutzerController {
     }
 
     @PostMapping("/registerBib")
-    public String postBibliothekar(){
-        //TODO
+    public String postBibliothekar(BibliothekarFormData bibliothekar){
+        nutzerService.createBibliothekar(bibliothekar.getEmail(), bibliothekar.getGeburtsdatum(),
+                                        bibliothekar.getNachname(), bibliothekar.getVorname(),
+                                            bibliothekar.getPasswort(), bibliothekar.getTelefonnummer());
         return "redirect:/";
     }
 

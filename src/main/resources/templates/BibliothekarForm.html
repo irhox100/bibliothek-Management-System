@@ -23,30 +23,30 @@
 </nav>
 <h1 class="formh1">Bibliothekar Registrierung</h1>
 <div class="container">
-    <form>
+    <form method="POST" th:object="${bibliothekar}" th:action="@{/registerBib}">
         <div class="form-group">
             <label for="vorname">Vorname:</label>
-            <input class="form-control" type="text" id="vorname">
+            <input class="form-control" type="text" id="vorname" th:field="*{vorname}" required>
         </div>
         <div class="form-group">
             <label for="nachname">Nachname:</label>
-            <input class="form-control" type="text" id="nachname">
+            <input class="form-control" type="text" id="nachname" th:field="*{nachname}" required>
         </div>
         <div class="form-group">
             <label for="email">E-Mail:</label>
-            <input class="form-control" type="email" id="email">
+            <input class="form-control" type="email" id="email" th:field="*{email}" required>
         </div>
         <div class="form-group">
             <label for="tel">Telefonnummer:</label>
-            <input class="form-control" type="tel" id="tel">
+            <input class="form-control" type="tel" id="tel" th:field="*{telefonnummer}" required>
         </div>
         <div class="form-group">
             <label for="geburtsdatum">Geburtsdatum:</label>
-            <input class="form-control" type="date" id="geburtsdatum">
+            <input class="form-control" type="date" id="geburtsdatum" th:field="*{geburtsdatum}" required>
         </div>
         <div class="form-group">
             <label for="passwort">Passwort:</label>
-            <input class="form-control" type="password" id="passwort">
+            <input class="form-control" type="password" id="passwort" th:field="*{passwort}" required>
         </div>
         <div class="form-group">
             <button type="submit" class="btn btn-primary">Submit</button>

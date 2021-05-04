@@ -1,7 +1,6 @@
 package de.bibliothek.phase4.service;
 
 import de.bibliothek.phase4.persistence.Artikel;
-import de.bibliothek.phase4.persistence.Exemplar;
 
 import java.util.List;
 

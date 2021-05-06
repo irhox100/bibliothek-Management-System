@@ -35,7 +35,8 @@ public class NutzerController {
     }
 
     @GetMapping("/registerKunde")
-    public String getKundeForm(){
+    public String getKundeForm(Model model){
+        model.addAttribute("kunde", new KundeFormData());
         return "KundeForm";
     }
 
@@ -48,8 +49,10 @@ public class NutzerController {
     }
 
     @PostMapping("/registerKunde")
-    public String postKunde(){
-        //TODO
+    public String postKunde(KundeFormData kunde){
+        nutzerService.createKunde(kunde.getEmail(), kunde.getGeburtsdatum(), kunde.getVorname(), kunde.getNachname(),
+                                kunde.getPasswort(), kunde.getGuthaben(), kunde.getBeitragsbefreit(),
+                                kunde.getStadt(), kunde.getStrasse(), kunde.getPlz(), kunde.getHausnummer());
         return "redirect:/";
     }
 }

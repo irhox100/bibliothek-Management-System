@@ -1,4 +1,4 @@
-package de.bibliothek.phase4.web;
+package de.bibliothek.phase4.web.nutzer;
 
 import lombok.Getter;
 import lombok.Setter;

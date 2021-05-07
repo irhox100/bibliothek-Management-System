@@ -1,6 +1,5 @@
-package de.bibliothek.phase4.web;
+package de.bibliothek.phase4.web.nutzer;
 
-import de.bibliothek.phase4.service.ArtikelService;
 import de.bibliothek.phase4.service.NutzerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,20 +10,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class NutzerController {
 
-    ArtikelService artikelService;
     NutzerService nutzerService;
 
-    public NutzerController(ArtikelService artikelService, NutzerService nutzerService){
-        this.artikelService = artikelService;
+    public NutzerController(NutzerService nutzerService){
         this.nutzerService = nutzerService;
     }
 
     @GetMapping("/")
     public String getIndex(Model model){
 
-        model.addAttribute("artikeln", artikelService.findAll());
-        model.addAttribute("exemplare", artikelService.getExemplareCountForArtikel());
-        model.addAttribute("genres", artikelService.getGenresByArtikel());
+        model.addAttribute("artikeln", nutzerService.findAll());
+        model.addAttribute("exemplare", nutzerService.getExemplareCountForArtikel());
+        model.addAttribute("genres", nutzerService.getGenresByArtikel());
         return "index";
     }
 

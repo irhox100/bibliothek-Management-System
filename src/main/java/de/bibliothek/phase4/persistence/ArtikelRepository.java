@@ -18,6 +18,9 @@ public interface ArtikelRepository extends CrudRepository<Artikel, String> {
     @Query("SELECT count(e.ISBNNummer) FROM Exemplar e, Artikel a WHERE e.ISBNNUMMER = a.ISBNNUMMER AND a.ISBNNUMMER = :isbn")
     Integer getExemplareCountForArtikel(@Param("isbn") String isbnnummer);
 
+    @Query("SELECT e.ID FROM Exemplar e, Artikel a WHERE e.ISBNNUMMER = a.ISBNNUMMER AND a.ISBNNUMMER = :isbn")
+    List<Integer> getExemplareIDsForArtikel(@Param("isbn") String isbnnummer);
+
     @Query("SELECT g.Genre FROM Artikel a, GehoertZu g WHERE a.ISBNNummer = g.ISBNNummer AND a.ISBNNUMMER = :isbn")
     List<String> getGenresByArtikel(@Param("isbn") String isbnnummer);
 

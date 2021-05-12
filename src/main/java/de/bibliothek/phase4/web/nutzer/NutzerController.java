@@ -1,6 +1,8 @@
 package de.bibliothek.phase4.web.nutzer;
 
 import de.bibliothek.phase4.service.NutzerService;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -51,5 +53,20 @@ public class NutzerController {
                                 kunde.getPasswort(), kunde.getGuthaben(), kunde.getBeitragsbefreit(),
                                 kunde.getStadt(), kunde.getStrasse(), kunde.getPlz(), kunde.getHausnummer());
         return "redirect:/";
+    }
+
+    @PostMapping("/login")
+    public String anmelden(){
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String email = (String) auth.getPrincipal();
+        if(nutzerService.isNutzerKunde(email)){
+            return "redirect:/bib";
+        }
+        else if(nutzerService.isNutzerBibliothekar(email)){
+            return "redirect:/kunde";
+        }
+        else{
+            return "redirect:/";
+        }
     }
 }

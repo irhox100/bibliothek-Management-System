@@ -28,4 +28,11 @@ public interface NutzerRepository extends CrudRepository<Nutzer, String> {
     @Query("INSERT INTO Adresse(Stadt, Postleitzahl, Strasse, Hausnummer) VALUES(:stadt, :plz, :strasse, :hausnummer)")
     void createAdresse(@Param("stadt") String stadt, @Param("plz") Integer plz, @Param("strasse") String strasse,
                        @Param("hausnummer") Integer hausnummer);
+
+    @Query("SELECT CASE WHEN count(*) > 0 THEN true ELSE false END FROM Nutzer n, Kunde k WHERE n.EMAIL = :email AND n.EMAIL = k.EMAIL")
+    Boolean isNutzerKunde(@Param("email") String email);
+
+    @Query("SELECT CASE WHEN count(*) > 0 THEN true ELSE false END FROM Nutzer n, Bibliothekar b WHERE n.EMAIL = :email AND n.EMAIL = b.EMAIL")
+    Boolean isNutzerBibliothekar(@Param("email") String email);
+
 }

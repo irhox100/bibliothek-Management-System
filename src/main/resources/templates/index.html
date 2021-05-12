@@ -39,7 +39,9 @@
                 </div>
             </div>
         </div>
-        <a class="nav-link justify-content-end">Anmelden</a>
+        <form method="post" th:action="@{/login}">
+        <input type="submit" class="nav-link justify-content-end" value="Anmelden"/>
+        </form>
 
     </div>
 </nav>

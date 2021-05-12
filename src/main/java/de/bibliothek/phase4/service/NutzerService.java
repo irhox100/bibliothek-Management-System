@@ -17,4 +17,10 @@ public interface NutzerService {
     List<Integer> getExemplareCountForArtikel();
 
     List<List<String>> getGenresByArtikel();
+
+    Boolean isNutzerKunde(String email);
+
+    Boolean isNutzerBibliothekar(String email);
+
+    List<List<Integer>> getExemplareIDsForArtikel();
 }

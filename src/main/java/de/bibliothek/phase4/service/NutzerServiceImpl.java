@@ -47,4 +47,19 @@ public class NutzerServiceImpl implements NutzerService {
     public List<List<String>> getGenresByArtikel() {
         return findAll().stream().map(a -> artikelRepository.getGenresByArtikel(a.getIsbnnummer())).collect(Collectors.toList());
     }
+
+    @Override
+    public Boolean isNutzerKunde(String email) {
+        return nutzerRepository.isNutzerKunde(email);
+    }
+
+    @Override
+    public Boolean isNutzerBibliothekar(String email) {
+        return nutzerRepository.isNutzerBibliothekar(email);
+    }
+
+    @Override
+    public List<List<Integer>> getExemplareIDsForArtikel() {
+        return findAll().stream().map(a -> artikelRepository.getExemplareIDsForArtikel(a.getIsbnnummer())).collect(Collectors.toList());
+    }
 }
